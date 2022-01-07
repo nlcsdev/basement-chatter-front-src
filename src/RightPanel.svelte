@@ -45,6 +45,14 @@
         unit: "vw",
         duration: 400,
     }}
+
+    out:MovePosition={{
+        fx: -38,
+        tx: 0,
+        left: false,
+        unit: "vw",
+        duration: 400,
+    }}
 >
     <button
         on:click={() => {
@@ -68,13 +76,13 @@
             }}
             on:mouseenter={() => clearTimeout(timeoutID)}
             on:mouseleave={() => LeaveSidebarBtn()}
-            transition:MovePosition|local="{{
-                unit:"v",
+            transition:MovePosition|local={{
+                unit: "v",
                 fy: 48.5,
                 ty: 41.5,
                 fx: -4,
-                tx: -7
-            }}"
+                tx: -7,
+            }}
             class="sidebar-btn profile-btn"
         >
             <i class="material-icons">person</i>
@@ -87,13 +95,13 @@
             }}
             on:mouseenter={() => clearTimeout(timeoutID)}
             on:mouseleave={() => LeaveSidebarBtn()}
-            transition:MovePosition|local="{{
-                unit:"v",
+            transition:MovePosition|local={{
+                unit: "v",
                 fy: 48.5,
                 ty: 48.5,
                 fx: -4,
-                tx: -8
-            }}"
+                tx: -8,
+            }}
             class="sidebar-btn session-btn"
         >
             <i class="material-icons">chat_bubble</i>
@@ -106,13 +114,13 @@
             }}
             on:mouseenter={() => clearTimeout(timeoutID)}
             on:mouseleave={() => LeaveSidebarBtn()}
-            transition:MovePosition|local="{{
-                unit:"v",
+            transition:MovePosition|local={{
+                unit: "v",
                 fy: 48.5,
                 ty: 55.5,
                 fx: -4,
-                tx: -7
-            }}"
+                tx: -7,
+            }}
             class="sidebar-btn setting-btn"
         >
             <i class="material-icons">settings</i>

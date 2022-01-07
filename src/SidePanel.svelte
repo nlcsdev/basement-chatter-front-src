@@ -51,4 +51,16 @@
     :global(.side-panel h2){
         margin-top: 0px;
     }
+
+        /* scrollbar style hidden from https://www.w3schools.com/howto/howto_css_hide_scrollbars.asp*/
+        #session::-webkit-scrollbar {
+      display: none;
+    }
+    
+    #session {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+      overflow: auto;
+    }
+
 </style>

@@ -7,10 +7,9 @@
 
 <SidePanel myId={id}>
     <h2>Sessions</h2>
-    {#each $currentSocketUsers as session}
+    {#each $currentSocketUsers as session ("session-"+session.name)}
         {#if session.name != $userName}
         <Session title={session.name}/>
         {/if}
-
     {/each}
 </SidePanel>

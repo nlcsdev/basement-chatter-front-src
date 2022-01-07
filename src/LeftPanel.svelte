@@ -33,7 +33,7 @@
     </div>
         <div
             id="chat-input-container"
-            in:MovePosition|local={{
+            transition:MovePosition={{
                 fy: -56,
                 ty: 0,
                 top: false,

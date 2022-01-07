@@ -1,4 +1,4 @@
-import { currentSocketUsers, peerConnections, loggedin, userName, targetName, messageStack } from "./store.js";
+import { currentSocketUsers, peerConnections, loggedin, userName, } from "./store.js";
 import PeerConnections from "./PeerConnection.js";
 const signalingServerUrl = "wss://basement-chatter-signal-server.rcp.r9n.co/";
 //const signalingServerUrl = "ws://localhost:3100";
@@ -11,7 +11,6 @@ export const socketSend = data => {
 let userName_value;
 // let targetName_value;
 let currentSocketUsers_value;
-let messageStack_value;
 let peerConnections_value;
 
 userName.subscribe(val => {
@@ -24,10 +23,6 @@ userName.subscribe(val => {
 
 currentSocketUsers.subscribe(val => {
     currentSocketUsers_value = val;
-});
-
-messageStack.subscribe(val => {
-    messageStack_value = val;
 });
 
 peerConnections.subscribe(val => {
@@ -59,7 +54,7 @@ mySocket.onmessage = async socketMsg => {
             peerConnections.set({ ...peerConnections_value, [from]: pcObj });
             targetConnection = peerConnections_value[from];
         }
-        console.log("Checking for target pc truth value: %s", !!targetConnection);
+        //console.log("Checking for target pc truth value: %s", !!targetConnection);
     }
 
     switch (type) {
@@ -92,7 +87,8 @@ mySocket.onmessage = async socketMsg => {
 
         case "leave":
             let updatedUsers = [...currentSocketUsers_value];
-            delete updatedUsers[from];
+            let index = updatedUsers.findIndex( x => x.name == from);
+            updatedUsers.splice(index,1);
             currentSocketUsers.set(updatedUsers);
             break;
 
@@ -112,6 +108,14 @@ mySocket.onclose = () => {
 export const LogIn = () => {
     socketSend({
         type: "login",
+        from: userName_value
+    });
+}
+
+export const LogOut = () => {
+    loggedin.set(false);
+    socketSend({
+        type: "leave",
         from: userName_value
     });
 }

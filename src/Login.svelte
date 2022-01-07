@@ -2,11 +2,18 @@
     import { userName } from "./store.js";
     import { LogIn } from "./ConnectionHandle.js";
     import { fade } from "svelte/transition";
+
+    const onEnter = (event) => {
+        if(event.keyCode == 13){
+            LogIn();
+        }
+    }
+
 </script>
 
-<div id="login-panel" out:fade="{{duration: 400}}">
+<div id="login-panel" transition:fade="{{duration: 400}}">
     <h1>Basement Chatter</h1>
-    <input bind:value={$userName}>
+    <input bind:value={$userName} on:keydown={onEnter}>
     <button on:click={LogIn}>Start</button>
     <div class="clear"/>
 </div>
